@@ -3,6 +3,7 @@ import { MdOutlineVisibility, MdOutlineVisibilityOff } from "react-icons/md";
 
 interface IPassword extends ComponentProps<"input"> {
   label?: string;
+  error?: string | null;
 }
 
 const Password = ({ label, ...props }: IPassword) => {
@@ -15,6 +16,7 @@ const Password = ({ label, ...props }: IPassword) => {
         type={showPassword ? "text" : "password"}
         id={label}
         autoComplete="current-password"
+        required
         {...props}
       />
       {showPassword ? (
@@ -30,6 +32,7 @@ const Password = ({ label, ...props }: IPassword) => {
           onClick={() => setShowPassword(!showPassword)}
         />
       )}
+      {props?.error && <p style={{ color: "red" }}>{props?.error}</p>}
     </div>
   );
 };

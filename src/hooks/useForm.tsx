@@ -1,12 +1,28 @@
 import { ChangeEvent, useState } from "react";
+import { types } from "../helpers/validatedFields";
 
-const useForm = (type?: string) => {
+type TypeKeys = keyof typeof types;
+
+const useForm = (type?: TypeKeys) => {
   const [value, setValue] = useState("");
   const [error, setError] = useState<string | null>(null);
 
   const validateValue = (value: string) => {
     if (!value) {
       setError(`O campo ${type} deve ser preenchido`);
+    }
+
+    if (type) {
+      const typeInfo = types[type];
+
+      if ("regex" in typeInfo && !typeInfo.regex.test(value)) {
+        setError(typeInfo.message);
+      }
+      else if ("minLength" in typeInfo && value.length < typeInfo.minLength) {
+        setError(typeInfo.message);
+      } else {
+        setError(null);
+      }
     }
   };
 
