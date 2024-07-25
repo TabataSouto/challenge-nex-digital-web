@@ -1,3 +1,5 @@
+import { IGetAccess } from "../interfaces";
+
 const KEY_AUTH = "access_token";
 
 export const saveAuth = (token: string) => {
@@ -13,9 +15,9 @@ export const logout = () => {
   localStorage.removeItem(KEY_AUTH);
 };
 
-export const getAccess = () => {
+export const getAccess = (): IGetAccess => {
   const toParse = getAuth()?.split(".")[1];
-  let result: unknown;
+  let result: string | null = null;
 
   if (toParse) {
     try {
@@ -29,5 +31,12 @@ export const getAccess = () => {
       console.error("Erro ao decodificar o token:", error);
     }
   }
-  return result;
+
+  // Garante que `result` seja uma string antes de chamar `JSON.parse`
+  if (result) {
+    return JSON.parse(result) as IGetAccess;
+  }
+  
+  // Retorna um valor padrão se a decodificação falhar
+  return {} as IGetAccess;
 };

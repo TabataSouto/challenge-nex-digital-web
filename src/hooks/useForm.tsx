@@ -8,11 +8,11 @@ const useForm = (type?: TypeKeys) => {
   const [error, setError] = useState<string | null>(null);
 
   const validateValue = (value: string) => {
-    if (!value) {
-      setError(`O campo ${type} deve ser preenchido`);
-    }
+    // if (!value) {
+    //   setError(!type ? "O campo deve ser preenchido" : `O campo ${type} deve ser preenchido`);
+    // }
 
-    if (type) {
+    if (type?.length) {
       const typeInfo = types[type];
 
       if ("regex" in typeInfo && !typeInfo.regex.test(value)) {

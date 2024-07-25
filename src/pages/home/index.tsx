@@ -1,21 +1,13 @@
-import { useNavigate } from "react-router-dom";
-import { logout } from "../../helpers/account";
+import { getAccess } from "../../helpers/account";
+import UserHome from "../../components/home/UserHome";
+import AdminHome from "../../components/home/AdminHome";
 
 const Home = () => {
-  const navigate = useNavigate();
+  const {
+    data: { role },
+  } = getAccess();
 
-  const onClick = () => {
-    logout();
-    navigate("/login");
-  };
-  return (
-    <section>
-      <h1>Home</h1>
-      <button type="button" onClick={onClick}>
-        Sair
-      </button>
-    </section>
-  );
+  return <section>{role === "user" ? <UserHome /> : <AdminHome />}</section>;
 };
 
 export default Home;
