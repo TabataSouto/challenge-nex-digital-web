@@ -2,7 +2,7 @@ import { ComponentProps, useState } from "react";
 import { MdOutlineVisibility, MdOutlineVisibilityOff } from "react-icons/md";
 
 interface IPassword extends ComponentProps<"input"> {
-  label: string;
+  label?: string;
 }
 
 const Password = ({ label, ...props }: IPassword) => {
@@ -10,7 +10,7 @@ const Password = ({ label, ...props }: IPassword) => {
 
   return (
     <div>
-      <label htmlFor={label}>{label}</label>
+      {label && <label htmlFor={label}>{label}</label>}
       <input
         type={showPassword ? "text" : "password"}
         id={label}
