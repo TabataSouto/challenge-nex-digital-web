@@ -15,7 +15,7 @@ const MyContextProvider = ({ children }: PropsWithChildren) => {
     if (isAuthenticated) {
       navigate("/home");
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, navigate]);
 
   const values = {
     isAuthenticated,

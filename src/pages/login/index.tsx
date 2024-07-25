@@ -1,4 +1,5 @@
 import { FormEvent } from "react";
+import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 
 import { USER_AUTH } from "../../server/api";
@@ -15,8 +16,6 @@ const LoginPage = () => {
   const email = useForm();
   const password = useForm();
 
-  const isDisabled = !email.value || !password.value;
-
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -30,7 +29,10 @@ const LoginPage = () => {
         saveAuth(data.token);
         navigate("/home");
       })
-      .catch();
+      .catch((error) => {
+        toast.error(error.response?.data?.message);
+        console.log(error.response?.data?.message);
+      });
   };
 
   return (
@@ -47,7 +49,7 @@ const LoginPage = () => {
             name="password"
             {...password}
           />
-          <Button disabled={isDisabled}>Entrar</Button>
+          <Button disabled={!email.value || !password.value}>Entrar</Button>
         </form>
       </div>
     </section>
