@@ -1,28 +1,12 @@
-import { ChangeEvent } from "react";
+import { BrowserRouter } from "react-router-dom";
+import AppRouter from "./routes";
 
 function App() {
-  const handleChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
-    console.log(target.files);
-  };
-
-  return (
-    <section>
-      <form>
-        <label>Upload Excel</label>
-        <br />
-        <input
-          type="file"
-          className="form-control"
-          id="file"
-          accept=".xlsx"
-          onChange={handleChange}
-        />
-        <br />
-        <br />
-        {/* <button onClick={this.handleFile}>Upload</button> */}
-      </form>
-    </section>
-  );
+  return <section>
+    <BrowserRouter>
+      <AppRouter />
+    </BrowserRouter>
+  </section>;
 }
 
 export default App;
