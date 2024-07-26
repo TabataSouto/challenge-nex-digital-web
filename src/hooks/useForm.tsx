@@ -37,7 +37,6 @@ const useForm = (type?: TypeKeys) => {
     value,
     error,
     onChange,
-    validationValue: () => validateValue(value),
     onBlur: () => validateValue(value),
   };
 };

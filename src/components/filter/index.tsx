@@ -67,7 +67,7 @@ const Filter = ({ setFilters, role }: IFilter) => {
       )}
       <div className={styles.fields}>
         <Input label="A partir do dia" type="date" {...startDate} />
-        <Input label="Atpe o dia" type="date" {...endDate} />
+        <Input label="Até o dia" type="date" {...endDate} />
       </div>
       <div className={`${styles.fields} ${styles.button}`}>
         <button type="button" onClick={handleFilter}>

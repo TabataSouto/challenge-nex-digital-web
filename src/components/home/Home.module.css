@@ -4,7 +4,7 @@
 }
 
 .formUpload {
-  padding: 1rem;
+  padding: 1rem 1.5rem;
   display: flex;
   align-items: center;
   & input {
@@ -19,5 +19,14 @@
   }
   & button {
     padding: .8rem;
+  }
+}
+
+.total {
+  padding: 0 2rem;
+  font-size: 1.2rem;
+  & span {
+    color: var(--color3);
+    font-weight: 600;
   }
 }
