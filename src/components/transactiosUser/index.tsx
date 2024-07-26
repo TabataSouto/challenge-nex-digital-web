@@ -1,33 +1,17 @@
-import { GET_TRANSACTIONS } from "../../server/api";
-import { IFilters, ITransactions } from "../../interfaces";
+import { Dispatch } from "react";
 import Filter from "../filter";
-import { useEffect, useState } from "react";
+import { IFilters, ITransactions } from "../../interfaces";
 
-const initialState = {
-  status: "",
-  product: "",
-  cpf: "",
-  startDate: "",
-  endDate: "",
-  minValue: "",
-  maxValue: "",
-};
+interface ITransactionsProps {
+  data: ITransactions[];
+  role: string;
+  setFilters: Dispatch<React.SetStateAction<IFilters>>;
+}
 
-const Transactios = () => {
-  const [filters, setFilters] = useState<IFilters>(initialState);
-
-  const [data, setData] = useState<ITransactions[] | []>([]);
-
-  useEffect(() => {
-    (async () => {
-      const response = await GET_TRANSACTIONS(filters);
-      setData(response);
-    })();
-  }, [filters]);
-
+const Transactios = ({ data, role, setFilters }: ITransactionsProps) => {
   return (
     <div>
-      <Filter setFilters={setFilters} />
+      <Filter setFilters={setFilters} role={role} />
       {data?.length ? (
         <table>
           <thead>

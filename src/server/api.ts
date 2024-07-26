@@ -30,7 +30,6 @@ export const GET_TRANSACTIONS = async (filters: IFilters) => {
   const { status, cpf, product, startDate, endDate, minValue, maxValue } =
     filters;
   const params = new URLSearchParams();
-  console.log(product)
 
   // Adiciona parâmetros de filtro na URLSearchParams se estiverem definidos
   if (status) params.append("status", status);
@@ -41,10 +40,31 @@ export const GET_TRANSACTIONS = async (filters: IFilters) => {
   if (minValue) params.append("minValue", minValue);
   if (maxValue) params.append("maxValue", maxValue);
 
-  console.log(`${BASE_URL}/transactions?${params.toString()}`)
+  console.log(`${BASE_URL}/transactions?${params.toString()}`);
 
   const response = await Request({
     url: `${BASE_URL}/transactions?${params.toString()}`,
+    method: "GET",
+  });
+
+  return response.data;
+};
+
+export const GET_TRANSACTIONS_USER = async (filters: IFilters, cpf: string) => {
+  // const [, filters] = queryKey;
+  const { status,startDate, endDate} =
+    filters;
+  const params = new URLSearchParams();
+
+  // Adiciona parâmetros de filtro na URLSearchParams se estiverem definidos
+  if (status) params.append("status", status);
+  if (startDate) params.append("startDate", startDate);
+  if (endDate) params.append("endDate", endDate);
+
+  console.log(`${BASE_URL}/transactions?${params.toString()}`);
+
+  const response = await Request({
+    url: `${BASE_URL}/transactions/${cpf}?${params.toString()}`,
     method: "GET",
   });
 

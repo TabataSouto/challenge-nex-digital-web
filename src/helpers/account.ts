@@ -13,6 +13,7 @@ export const getAuth = () => {
 
 export const logout = () => {
   localStorage.removeItem(KEY_AUTH);
+  window.location.reload();
 };
 
 export const getAccess = (): IGetAccess => {
@@ -36,7 +37,7 @@ export const getAccess = (): IGetAccess => {
   if (result) {
     return JSON.parse(result) as IGetAccess;
   }
-  
+
   // Retorna um valor padrão se a decodificação falhar
   return {} as IGetAccess;
 };

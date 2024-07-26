@@ -7,9 +7,10 @@ import Select from "../select";
 
 interface IFilter {
   setFilters: Dispatch<SetStateAction<IFilters>>;
+  role: string;
 }
 
-const Filter = ({ setFilters }: IFilter) => {
+const Filter = ({ setFilters, role }: IFilter) => {
   const status = useForm();
   const product = useForm();
   const cpf = useForm();
@@ -29,7 +30,7 @@ const Filter = ({ setFilters }: IFilter) => {
       maxValue: maxValue.value || "",
     });
   };
-
+  console.log(role)
   return (
     <form>
       <Select
@@ -37,26 +38,37 @@ const Filter = ({ setFilters }: IFilter) => {
         options={["Aprovado", "Reprovado", "	Em avaliação"]}
         {...status}
       />
-      <Input label="CPF" type="number" placeholder="apenas números" {...cpf} />
-      <Input label="Produto" type="text" {...product} />
+      {role === "admin" && (
+        <>
+          <Input
+            label="CPF"
+            type="number"
+            placeholder="apenas números"
+            {...cpf}
+          />
+          <Input label="Produto" type="text" {...product} />
+          <div>
+            <Input
+              label="Valor mínimo"
+              type="number"
+              placeholder="apenas números"
+              {...minValue}
+            />
+            <Input
+              label="Valor máximo"
+              type="number"
+              placeholder="apenas números"
+              {...maxValue}
+            />
+          </div>
+        </>
+      )}
+
       <div>
         <Input label="Data Inicio" type="date" {...startDate} />
         <Input label="Data Final" type="date" {...endDate} />
       </div>
-      <div>
-        <Input
-          label="Valor mínimo"
-          type="number"
-          placeholder="apenas números"
-          {...minValue}
-        />
-        <Input
-          label="Valor máximo"
-          type="number"
-          placeholder="apenas números"
-          {...maxValue}
-        />
-      </div>
+
       <button type="button" onClick={handleFilter}>
         Filtrar
       </button>

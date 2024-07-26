@@ -15,6 +15,7 @@ export interface IRegister extends ILogin {
 export interface IGetAccess {
   data: {
     role: string;
+    cpf: string;
   };
 }
 
