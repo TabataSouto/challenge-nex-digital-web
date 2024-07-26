@@ -17,3 +17,25 @@ export interface IGetAccess {
     role: string;
   };
 }
+
+export interface ITransactions {
+  amountValue: string;
+  cpf: string;
+  product: string;
+  id: number;
+  pointsValue: string;
+  status: string;
+  transactionDate: string;
+}
+
+export interface IFilters {
+  status?: string;
+  cpf?: string;
+  product?: string;
+  startDate?: string;
+  endDate?: string;
+  minValue?: string;
+  maxValue?: string;
+}
+
+export type QueryKey = [string, IFilters];

@@ -17,8 +17,7 @@ const useForm = (type?: TypeKeys) => {
 
       if ("regex" in typeInfo && !typeInfo.regex.test(value)) {
         setError(typeInfo.message);
-      }
-      else if ("minLength" in typeInfo && value.length < typeInfo.minLength) {
+      } else if ("minLength" in typeInfo && value.length < typeInfo.minLength) {
         setError(typeInfo.message);
       } else {
         setError(null);
@@ -32,7 +31,12 @@ const useForm = (type?: TypeKeys) => {
     setValue(value);
   };
 
-  return { value, error, onChange, onBlur: () => validateValue(value) };
+  return {
+    value,
+    error,
+    onChange,
+    onBlur: () => validateValue(value),
+  };
 };
 
 export default useForm;
