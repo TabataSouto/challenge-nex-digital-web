@@ -6,8 +6,7 @@ export const types = {
   },
   password: {
     regex: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*\-+?]{8,}$/,
-    message:
-      "A senha precisa ter 1 caracter maíusculo, 1 minúsculo e 1 digito com no mínimo 8 caracteres",
+    message: `A senha precisa ter:\n1 caracter maíusculo\n1 caracter minúsculo\n1 dígito\nMínimo de 8 caracteres`,
   },
   name: {
     minLength: 6,

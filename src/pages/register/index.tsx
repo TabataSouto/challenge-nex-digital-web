@@ -9,6 +9,7 @@ import useForm from "../../hooks/useForm";
 import Input from "../../components/input";
 import Password from "../../components/password";
 import Button from "../../components/button";
+import styles from "./Register.module.css";
 
 const RegisterPage = () => {
   const navigate = useNavigate();
@@ -42,12 +43,14 @@ const RegisterPage = () => {
   };
 
   return (
-    <section>
-      <div>
-        <p>
-          Já tem uma conta? Faça <Link to="/login">login</Link>
-        </p>
-        <form onSubmit={handleSubmit}>
+    <section className={styles.container}>
+      <main className={styles.main}>
+        <div className={styles.title}>
+          <p>
+            Já tem uma conta? Faça <Link to="/login">login</Link>
+          </p>
+        </div>
+        <form onSubmit={handleSubmit} className={styles.form}>
           <Input
             label="Nome"
             placeholder="nome Completo"
@@ -64,7 +67,7 @@ const RegisterPage = () => {
           />
           <Input
             label="CPF"
-            placeholder="informe seu cpf"
+            placeholder="informe seu cpf separado por pontos e traço"
             name="cpf"
             type="text"
             {...cpf}
@@ -79,7 +82,7 @@ const RegisterPage = () => {
             {loading ? <AiOutlineLoading /> : "Cadastrar"}
           </Button>
         </form>
-      </div>
+      </main>
     </section>
   );
 };

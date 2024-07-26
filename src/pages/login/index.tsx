@@ -11,6 +11,7 @@ import Input from "../../components/input";
 import Password from "../../components/password";
 import Button from "../../components/button";
 import { AiOutlineLoading } from "react-icons/ai";
+import styles from "./Login.module.css";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -41,13 +42,15 @@ const LoginPage = () => {
   };
 
   return (
-    <section>
-      <div>
-        <h1>Seja bem-vindo(a) NOME</h1>
-        <p>
-          Ainda não tem conta? <Link to="/register">Cadastre-se</Link>
-        </p>
-        <form onSubmit={handleSubmit}>
+    <section className={styles.container}>
+      <main className={styles.main}>
+        <div className={styles.title}>
+          <h1>Seja bem-vindo(a)</h1>
+          <p>
+            Ainda não tem conta? <Link to="/register">Cadastre-se</Link>
+          </p>
+        </div>
+        <form onSubmit={handleSubmit} className={styles.form}>
           <Input
             placeholder="Endereço de e-mail"
             name="email"
@@ -63,7 +66,7 @@ const LoginPage = () => {
             {loading ? <AiOutlineLoading /> : "Entrar"}
           </Button>
         </form>
-      </div>
+      </main>
     </section>
   );
 };

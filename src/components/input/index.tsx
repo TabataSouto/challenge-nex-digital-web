@@ -9,18 +9,17 @@ const Input = ({ label, ...props }: IInputProps) => {
   return (
     <div>
       {label && (
-        <label className="label" htmlFor={label}>
+        <label htmlFor={label}>
           {label}
         </label>
       )}
       <input
-        className="label"
         id={label}
         autoComplete="current-password"
         required
         {...props}
       />
-      {props?.error && <p style={{ color: "red" }}>{props?.error}</p>}
+      {props?.error && <p className="message">{props?.error}</p>}
     </div>
   );
 };

@@ -1,0 +1,35 @@
+.container {
+  background: var(--color1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.main {
+  background: #fff;
+  min-width: 15cm;
+  min-height: 12cm;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  padding: 4rem;
+}
+
+.title {
+  & h1 {
+    align-items: start;
+    font-size: 1.8rem;
+    font-weight: 500;
+  }
+  & a {
+    color: var(--color5);
+  }
+}
+
+.form {
+  padding-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}

@@ -7,22 +7,24 @@ const useForm = (type?: TypeKeys) => {
   const [value, setValue] = useState("");
   const [error, setError] = useState<string | null>(null);
 
-  const validateValue = (value: string) => {
-    // if (!value) {
-    //   setError(!type ? "O campo deve ser preenchido" : `O campo ${type} deve ser preenchido`);
-    // }
+  const validateValue = (value: string): boolean => {
+    if (!type) return false;
 
     if (type?.length) {
       const typeInfo = types[type];
 
       if ("regex" in typeInfo && !typeInfo.regex.test(value)) {
         setError(typeInfo.message);
+        return false;
       } else if ("minLength" in typeInfo && value.length < typeInfo.minLength) {
         setError(typeInfo.message);
+        return false;
       } else {
         setError(null);
+        return true;
       }
     }
+    return true;
   };
 
   const onChange = ({ target: { value } }: ChangeEvent<HTMLInputElement>) => {
@@ -35,6 +37,7 @@ const useForm = (type?: TypeKeys) => {
     value,
     error,
     onChange,
+    validationValue: () => validateValue(value),
     onBlur: () => validateValue(value),
   };
 };
