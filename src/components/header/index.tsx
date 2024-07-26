@@ -1,9 +1,26 @@
-import { logout } from "../../helpers/account";
+import { getAccess, logout } from "../../helpers/account";
+import styles from "./Header.module.css";
 
-const Header = () => {
+interface IHeaderProps {
+  role?: string;
+}
+
+const Header = ({ role }: IHeaderProps) => {
+  const {
+    data: { name },
+  } = getAccess();
+
+  console.log(role);
+
   return (
-    <header>
-      <button onClick={() => logout()}>Sair</button>
+    <header className={styles.header}>
+      <div>
+        <h1>{name}</h1>
+        {/* { role === "user" && (
+
+        )} */}
+      </div>
+      <button className={styles.button} onClick={() => logout()}>Sair</button>
     </header>
   );
 };

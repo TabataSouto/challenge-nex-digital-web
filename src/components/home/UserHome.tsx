@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { GET_TRANSACTIONS } from "../../server/api";
 import { IFilters, ITransactions } from "../../interfaces";
-import Transactios from "../transactiosUser";
+import Transactios from "../transactios";
 import { getAccess } from "../../helpers/account";
 
 const UserHome = () => {

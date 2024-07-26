@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.formUpload {
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  & input {
+    opacity: 0;
+    width: 0;
+  };
+  & label {
+    cursor: pointer;
+    border: 1px solid var(--color2);
+    padding: .8rem;
+    border-radius: 5px;
+  }
+  & button {
+    padding: .8rem;
+  }
+}

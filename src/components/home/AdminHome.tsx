@@ -4,9 +4,10 @@ import toast from "react-hot-toast";
 import { GET_TRANSACTIONS, SEND_UPLOAD } from "../../server/api";
 import Request from "../../server/request";
 import { AiOutlineLoading } from "react-icons/ai";
-import Transactios from "../transactiosUser";
+import Transactios from "../transactios";
 import { IFilters, ITransactions } from "../../interfaces";
 import { getAccess } from "../../helpers/account";
+import styles from "./Home.module.css";
 
 const AdminHome = () => {
   const initialState = {
@@ -64,10 +65,10 @@ const AdminHome = () => {
   };
 
   return (
-    <section>
-      <form onSubmit={handleSubmit}>
-        <label>Upload de Transações</label>
-        <input type="file" accept=".xlsx, .xls" onChange={handleChange} />
+    <section className={styles.container}>
+      <form onSubmit={handleSubmit} className={styles.formUpload}>
+        <label htmlFor="file">Clique aqui para fazer o upload das transações</label>
+        <input type="file" id="file" accept=".xlsx, .xls" onChange={handleChange} />
         <button disabled={loading || !file}>
           {loading ? <AiOutlineLoading /> : "Enviar arquivo"}
         </button>

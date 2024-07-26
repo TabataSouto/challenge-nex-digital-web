@@ -3,7 +3,7 @@ import { IFilters } from "../../interfaces";
 import useForm from "../../hooks/useForm";
 import Input from "../input";
 import Select from "../select";
-// import Select from "../select";
+import styles from "./Filter.module.css";
 
 interface IFilter {
   setFilters: Dispatch<SetStateAction<IFilters>>;
@@ -30,51 +30,53 @@ const Filter = ({ setFilters, role }: IFilter) => {
       maxValue: maxValue.value || "",
     });
   };
-  console.log(role)
+  console.log(role);
   return (
-    <form>
-      <Select
-        label="Status"
-        options={["Aprovado", "Reprovado", "	Em avaliação"]}
-        {...status}
-      />
-      {role === "admin" && (
-        <>
+    <form className={styles.form}>
+      <div className={styles.fields}>
+        <Select
+          label="Status"
+          options={["Aprovado", "Reprovado", "	Em avaliação"]}
+          {...status}
+        />
+        {role === "admin" && (
           <Input
             label="CPF"
             type="number"
             placeholder="apenas números"
             {...cpf}
           />
-          <Input label="Produto" type="text" {...product} />
-          <div>
-            <Input
-              label="Valor mínimo"
-              type="number"
-              placeholder="apenas números"
-              {...minValue}
-            />
-            <Input
-              label="Valor máximo"
-              type="number"
-              placeholder="apenas números"
-              {...maxValue}
-            />
-          </div>
-        </>
-      )}
-
-      <div>
-        <Input label="Data Inicio" type="date" {...startDate} />
-        <Input label="Data Final" type="date" {...endDate} />
+        )}
+        {role === "admin" && <Input label="Produto" type="text" {...product} />}
       </div>
-
-      <button type="button" onClick={handleFilter}>
-        Filtrar
-      </button>
-      <button type="button" onClick={() => window.location.reload()}>
-        Limpar Filtro
-      </button>
+      {role === "admin" && (
+        <div className={styles.fields}>
+          <Input
+            label="Valor mínimo"
+            type="number"
+            placeholder="apenas números"
+            {...minValue}
+          />
+          <Input
+            label="Valor máximo"
+            type="number"
+            placeholder="apenas números"
+            {...maxValue}
+          />
+        </div>
+      )}
+      <div className={styles.fields}>
+        <Input label="A partir do dia" type="date" {...startDate} />
+        <Input label="Atpe o dia" type="date" {...endDate} />
+      </div>
+      <div className={`${styles.fields} ${styles.button}`}>
+        <button type="button" onClick={handleFilter}>
+          Filtrar
+        </button>
+        <button type="button" onClick={() => window.location.reload()}>
+          Limpar Filtro
+        </button>
+      </div>
     </form>
   );
 };

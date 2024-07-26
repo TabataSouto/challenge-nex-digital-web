@@ -1,0 +1,22 @@
+.form {
+  padding: 1rem;
+  display: flex;
+  /* flex-direction: column; */
+  align-items: start;
+  gap: 2rem;
+}
+
+.fields {
+  display: flex;
+  flex-direction: column;
+  gap: .8rem
+}
+
+.button {
+  margin-top: 1.5rem;
+  justify-content: center;
+  & button {
+    padding: 0.9rem;
+    margin-bottom: 0.8rem;
+  }
+}

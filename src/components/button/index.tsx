@@ -1,4 +1,5 @@
 import { ComponentProps, ReactNode } from "react";
+import styles from "./Button.module.css";
 
 interface IButtonProps extends ComponentProps<"button"> {
   children: ReactNode;
@@ -6,7 +7,7 @@ interface IButtonProps extends ComponentProps<"button"> {
 
 const Button = ({ children, ...props }: IButtonProps) => {
   return (
-    <button type="submit" {...props}>
+    <button className={styles.button} type="submit" {...props}>
       {children}
     </button>
   );

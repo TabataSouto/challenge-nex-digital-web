@@ -10,7 +10,7 @@ const Home = () => {
 
   return (
     <section>
-      <Header />
+      <Header role={role} />
       {role === "user" ? <UserHome /> : <AdminHome />}
     </section>
   );
